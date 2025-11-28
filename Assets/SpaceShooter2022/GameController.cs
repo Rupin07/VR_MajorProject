@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using System;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private Image timerImage;
@@ -15,6 +15,15 @@ public class GameController : MonoBehaviour
     
     [Header("Game Over Components")]
     [SerializeField] private GameObject gameOverScreen;
+
+    [Header("High Score Components")]
+    [SerializeField] private TextMeshProUGUI highscoreText;
+    private int highScore;
+
+    [Header("Gameplay audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] gameplayAudio;
+
 
     private int playerScore;
 
@@ -30,6 +39,10 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         currentGameStatus = GameState.Waiting;
+        if(PlayerPrefs.HasKey("HighScore"))
+        {
+            highscoreText.text=PlayerPrefs.GetInt("HighScore").ToString();
+        }
     }
     
     private void Update()
@@ -63,6 +76,7 @@ public class GameController : MonoBehaviour
     public void StartGame()
     {
         currentGameStatus = GameState.Playing;
+         PlayGameAudio(gameplayAudio[1], true);
     }
     
     public void GameOver()
@@ -71,6 +85,14 @@ public class GameController : MonoBehaviour
         
         //show game over screen
         gameOverScreen.SetActive(true);
+
+        if(playerScore>PlayerPrefs.GetInt("HighScore"))
+        {
+            PlayerPrefs.SetInt("HighScore",playerScore);
+            highscoreText.text=playerScore.ToString();
+        }
+
+         PlayGameAudio(gameplayAudio[2], false);
     }
     
     public void ResetGame()
@@ -83,6 +105,15 @@ public class GameController : MonoBehaviour
         //reset the score
         playerScore = 0;
         scoreText.text = "0";
+
+        PlayGameAudio(gameplayAudio[0], true);
+    }
+
+    private void PlayGameAudio(AudioClip clipToPlay,bool shouldLoop)
+    {
+        audioSource.clip=clipToPlay;
+        audioSource.loop=shouldLoop;
+        audioSource.Play();
     }
     
 }

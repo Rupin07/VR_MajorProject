@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4117437747758533196}
   - component: {fileID: 5134005257440657279}
   - component: {fileID: 6343511425897500478}
+  - component: {fileID: 1643578374}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Asteroid
@@ -82,6 +83,27 @@ MonoBehaviour:
   gameController: {fileID: 0}
   popupCanvas: {fileID: 5835339934664739100, guid: 0618e9856dc2b4d48925e4a76c2a7af1,
     type: 3}
+--- !u!95 &1643578374
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8512000840424516683}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e661b6a60b35c974aaf182de053c97c9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &2996188979316244303
 PrefabInstance:
   m_ObjectHideFlags: 0

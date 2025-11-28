@@ -9,7 +9,8 @@ public class AsteroidKillzone : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Asteroid"))
         {
-            Destroy(other.gameObject);
+            other.GetComponent<Animator>().SetTrigger("FadeOut");
+            Destroy(other.gameObject, 3f);
         }
     }
 }
